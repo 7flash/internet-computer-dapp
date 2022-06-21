@@ -23,7 +23,11 @@ dfx deploy --network ic
 
 ## :camera_flash: Demo
 
+![App](https://github.com/7flash/internet-computer-dapp/blob/master/docs/app.gif)
+
 ## :trophy: Tokenomics
+
+![Tokenomics](https://github.com/7flash/internet-computer-dapp/blob/master/docs/tokenomics.gif)
 
 ## Author
 
