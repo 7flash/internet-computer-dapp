@@ -64,6 +64,9 @@ module.exports = {
       stream: require.resolve("stream-browserify/"),
       util: require.resolve("util/"),
     },
+    alias: {
+      app: path.resolve(__dirname, path.join("src", frontendDirectory, "src")),
+    }
   },
   output: {
     filename: "index.js",
@@ -75,12 +78,12 @@ module.exports = {
   // webpack configuration. For example, if you are using React
   // modules and CSS as described in the "Adding a stylesheet"
   // tutorial, uncomment the following lines:
-  // module: {
-  //  rules: [
-  //    { test: /\.(ts|tsx|jsx)$/, loader: "ts-loader" },
-  //    { test: /\.css$/, use: ['style-loader','css-loader'] }
-  //  ]
-  // },
+  module: {
+   rules: [
+    //  { test: /\.(ts|tsx|jsx)$/, loader: "ts-loader" },
+    { test: /\.css$/, use: ['style-loader','css-loader'] }
+  ]
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: path.join(__dirname, asset_entry),
@@ -96,12 +99,14 @@ module.exports = {
     }),
     new webpack.EnvironmentPlugin({
       NODE_ENV: "development",
+      DFX_NETWORK: process.env.DFX_NETWORK || "local",
       ...canisterEnvVariables,
     }),
     new webpack.ProvidePlugin({
       Buffer: [require.resolve("buffer/"), "Buffer"],
       process: require.resolve("process/browser"),
     }),
+    new webpack.HotModuleReplacementPlugin(),
   ],
   // proxy /api to port 8000 during development
   devServer: {
@@ -114,7 +119,7 @@ module.exports = {
         },
       },
     },
-    hot: true,
+    hot: false,
     watchFiles: [path.resolve(__dirname, "src", frontendDirectory)],
     liveReload: true,
   },

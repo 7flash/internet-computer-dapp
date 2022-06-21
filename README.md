@@ -1,4 +1,53 @@
-# app
+## :package: Installation (development)
+
+```bash
+# Clone the project
+git clone git@github.com:7flash/internet-computer-dapp.git 
+# Enter the project's folder
+cd internet-computer-dapp
+# Install dependecies
+npm i
+# Start the replica, running in the background
+dfx start --background
+# Deploy canisters to the replica
+dfx deploy
+# Start the development server
+npm start
+```
+
+## :cloud: Deployment
+
+```
+dfx deploy --network ic
+```
+
+## :camera_flash: Demo
+
+## :trophy: Tokenomics
+
+## Author
+
+**Berlian Gur**
+
+- Github: [@VladimirMikulic](https://github.com/7flash)
+
+## :handshake: Contributing
+
+Contributions, issues and feature requests are welcome!
+
+## :pencil: License
+
+This project is licensed under [MIT](https://opensource.org/licenses/MIT) license.
+
+## :man_astronaut: Show your support
+
+Give a ⭐️ if you like this project!
+
+# Questions & Answers
+
+### Structure
+
+## asd
 
 Welcome to your new app project and to the internet computer development community. By default, creating a new project adds this README and some template files to your project directory. You can edit these template files to customize your project and to include your own code to speed up the development cycle.
 

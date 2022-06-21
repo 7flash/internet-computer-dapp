@@ -2,25 +2,43 @@
   "name": "app_assets",
   "version": "0.1.0",
   "description": "Internet Computer starter application",
-  "keywords": ["Internet Computer", "Motoko", "JavaScript", "Canister"],
+  "keywords": [
+    "Internet Computer",
+    "Motoko",
+    "JavaScript",
+    "Canister"
+  ],
   "scripts": {
+    "style": "npx tailwindcss -i ./src/app_assets/src/main.css -o ./src/app_assets/assets/main.css",
     "build": "webpack",
     "prebuild": "npm run copy:types",
     "start": "webpack serve --mode development --env development",
-    "prestart": "npm run copy:types",
-    "copy:types": "rsync -avr .dfx/$(echo ${DFX_NETWORK:-'**'})/canisters/** --exclude='assets/' --exclude='idl/' --exclude='*.wasm' --exclude='*.most' --delete src/declarations"
+    "prestart": "npm run copy:types && npm run style",
+    "copy:types": "rsync -avr .dfx/local/canisters/** --exclude='assets/' --exclude='idl/' --exclude='*.wasm' --exclude='*.most' --delete src/declarations"
   },
   "devDependencies": {
     "@dfinity/agent": "0.11.2",
+    "@dfinity/auth-client": "0.11.2",
+    "@dfinity/authentication": "0.11.2",
     "@dfinity/candid": "0.11.2",
+    "@dfinity/identity": "0.11.2",
     "@dfinity/principal": "0.11.2",
+    "@tailwindcss/forms": "^0.5.2",
+    "@tailwindcss/typography": "^0.5.2",
     "assert": "2.0.0",
+    "autoprefixer": "^10.4.7",
     "buffer": "6.0.3",
     "copy-webpack-plugin": "^9.0.1",
+    "css-loader": "^6.7.1",
+    "daisyui": "^2.15.2",
     "events": "3.3.0",
     "html-webpack-plugin": "5.5.0",
+    "postcss": "^8.4.14",
+    "postcss-loader": "^7.0.0",
     "process": "0.11.10",
     "stream-browserify": "3.0.0",
+    "style-loader": "^3.3.1",
+    "tailwindcss": "^3.0.24",
     "terser-webpack-plugin": "5.2.5",
     "util": "0.12.4",
     "webpack": "5.72.0",
@@ -35,5 +53,9 @@
     "last 2 firefox version",
     "last 2 safari version",
     "last 2 edge version"
-  ]
+  ],
+  "dependencies": {
+    "@cyberlab/cyberconnect": "^4.5.0",
+    "@cyberlab/social-verifier": "^2.0.1"
+  }
 }

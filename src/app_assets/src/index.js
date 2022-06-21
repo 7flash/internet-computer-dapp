@@ -1,19 +1,42 @@
-import { app } from "../../declarations/app";
+import './main.css'
 
-document.querySelector("form").addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const button = e.target.querySelector("button");
+import './core/render';
 
-  const name = document.getElementById("name").value.toString();
+import { setState } from './core/state';
+import { start, login, logout, ask, answer, upvote } from './features';
 
-  button.setAttribute("disabled", true);
+async function main() {
+  document.body.onload = start;
 
-  // Interact with foo actor, calling the greet method
-  const greeting = await app.greet(name);
+  let questioner;
+  let responder;
 
-  button.removeAttribute("disabled");
+  document.body.addEventListener('click', (e) => {
+    if (e.target.matches('a[href="#upvote"]')) {
+      questioner = e.target.closest('[data-name="question"]').querySelector('[data-name="questioner-principal"]').getAttribute('data-principal');
+      responder = e.target.closest('[data-name="answer"]').querySelector('[data-name="responder-principal"]').getAttribute('data-principal');
+    }
+  });
 
-  document.getElementById("greeting").innerText = greeting;
+  window.addEventListener('hashchange', (e) => {
+    const currentPage = e.newURL.substring(e.newURL.indexOf('#'));
+    
+    setState({
+      currentPage,
+    });
 
-  return false;
-});
+    if (currentPage == '#login') {
+      login();
+    } else if (currentPage == '#logout') {
+      logout();
+    } else if (currentPage == '#ask') {
+      ask();
+    } else if (currentPage == '#answer') {
+      answer();
+    } else if (currentPage == '#upvote') {
+      upvote(responder, questioner);
+    }
+  });
+}
+
+main();

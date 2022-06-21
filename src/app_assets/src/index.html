@@ -1,22 +1,123 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>app</title>
-    <base href="/" />
-    <link rel="icon" href="favicon.ico" />
-    <link type="text/css" rel="stylesheet" href="main.css" />
-  </head>
-  <body>
-    <main>
-      <img src="logo.png" alt="DFINITY logo" />
-      <form action="#">
-        <label for="name">Enter your name: &nbsp;</label>
-        <input id="name" alt="Name" type="text" />
-        <button type="submit">Click Me!</button>
-      </form>
-      <section id="greeting"></section>
-    </main>
-  </body>
+<html lang="en" data-theme="lofi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>app</title>
+  <base href="/" />
+  <link rel="icon" href="favicon.ico" />
+  <link href="main.css" rel="stylesheet">
+</head>
+
+<body class="font-sans">
+  <div class="mx-auto artboard artboard-demo phone-5 text-base-content">
+    <progress class="progress progress-primary hidden"></progress>
+    <div id="app" class="w-full h-full flex flex-col">
+      <div id="authView" class="contents hidden">
+        <div class="">
+          <div class="alert shadow-lg flex-col">
+            <div class="svg-login"></div>
+            <span class="font-bold">Welcome..</span>
+            <span class="text-sm text-center">Please authenticate<br>with Internet Identity..</span>
+            <div class="mx-auto"><a class="btn btn-sm btn-primary" href="#login">Connect</a></div>
+          </div>
+        </div>
+      </div>
+      <div id="mainView" class="contents hidden">
+        <div class="contents">
+          <div class="alert alert-success alert-sm text-xs rounded-none hidden">
+            <div class="transition">
+              <div class="svg-success"></div>
+              <span></span>
+            </div>
+          </div>
+          <div class="alert alert-warning alert-sm text-xs rounded-none transition hidden">
+            <div class="transition">
+              <div class="svg-warning"></div>
+              <span></span>
+            </div>
+          </div>
+          <div class="alert alert-error alert-sm text-xs rounded-none transition hidden">
+            <div class="transition">
+              <div class="svg-error"></div>
+              <span></span>
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-col justify-start my-2">
+          <div class="flex flex-row justify-between mx-2">
+            <span class="font-extrabold tracking-tight text-xl">Welcome</span>
+            <span class="text-xs my-auto">
+              <span id="principal-id" data-principal="">principal npgpo----lae</span>
+              <span>
+                <span>(</span><span data-name="balance">?</span><span>)</span>
+              </span>
+            </span>
+          </div>
+          <span class="text-xs mx-2 my-2">There is a text field to submit a question from yourself</span>
+          <div class="flex flex-row justify-between w-full bg-base-200">
+            <div class="border border-primary border-r-0 justify-around flex flex-col"><span
+                class="text-sm font-light px-1">Question</span></div>
+            <input type="text"
+              class="input-primary input focus:outline-hidden rounded-none border w-full bg-transparent"
+              id="question-input">
+            <a href="#ask" id="ask-btn" class="btn btn-primary rounded-none">Ask</a>
+          </div>
+          <span class="text-xs mx-2 my-2">There is a list of questions submitted from other people</span>
+          <div class="contents">
+            <template id="question-row">
+              <div class="collapse collapse-close" data-name="question">
+                <div class="flex flex-row justify-between collapse-title p-0 bg-base-200 ">
+                  <div class="p-2 mb-1 flex flex-col">
+                    <span class="font-bold text-sm" data-name="question-text">first</span>
+                    <div class="font-light text-xs">
+                      <span>asked by</span>
+                      <span data-name="questioner-principal" data-principal="">principal ihgf4----vae</span>
+                      <span>
+                        <span>(</span><span data-name="balance">?</span><span>)</span>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="flex flex-col justify-around">
+                    <a href="#details-0" class="link text-sm mx-1">
+                      <span class="" data-name="answers-num">0</span>
+                      <span class="">answers</span>
+                    </a>
+                  </div>
+                </div>
+                <div class="collapse-content bg-base-300 px-0">
+                  <div class="flex flex-col">
+                    <template data-name="answer">
+                      <div class="flex flex-col px-4" data-name="answer">
+                        <div class="inline-flex">
+                          <span class="text-sm" data-name="response-text"></span>
+                          <a href="#upvote" class="ml-3 link text-xs text-center transition-opacity opacity-100">upvote</a>
+                        </div>
+                        <span class="text-xs font-light">
+                            <span>answered by</span>
+                            <span data-name="responder-principal">principal ihgf4----vae</span>
+                            <span>
+                              <span>(</span><span data-name="balance">?</span><span>)</span>
+                            </span>      
+                          </span>
+                      </div>
+                    </template>
+                  </div>
+                  <div class="flex flex-row justify-between bg-base-200 mt-2">
+                    <div class="border border-primary border-r-0 justify-around flex flex-col"><span
+                        class="text-sm font-light px-1">Response</span></div>
+                    <input type="text"
+                      class="input-primary input focus:outline-hidden rounded-none border w-full bg-transparent input-sm">
+                    <a href="#answer" class="btn btn-primary btn-sm rounded-none">Answer</a>
+                  </div>
+                </div>
+              </div>
+            </template>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+
 </html>

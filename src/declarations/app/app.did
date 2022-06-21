@@ -1,0 +1,9 @@
+type Int = int;
+type Bool = bool;
+service : {
+  answer: (nat, text) -> (Bool);
+  ask: (text) -> (Bool);
+  balanceOf: (principal) -> (Int) query;
+  queryAllQuestions: () -> (vec text) query;
+  upvote: (text, text) -> (Bool);
+}
